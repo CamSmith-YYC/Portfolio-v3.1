@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Button, Container, createTheme, CssBaseline, Slider, Stack, TextField, ThemeProvider } from "@mui/material";
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
+import Header from "../components/layout/Header"
+import SideContactWidget from "../components/ui/SideContactWidget"
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Press Start 2P, system-ui, sans-serif',
+  },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header />
+      <Container maxWidth="xs">
+        <Stack gap={2}>
+          <TextField label="Sample Input" variant="outlined" />
+          <Slider defaultValue={30} aria-label="Sample Slider" />
+          <Button startIcon={<AutoAwesomeRoundedIcon />} variant="contained">Submit</Button>
+          <Button variant="outlined">Cancel</Button>
+        </Stack>
+      </Container>
+      <SideContactWidget />
+    </ThemeProvider>
+  );
 }
 
 export default App
